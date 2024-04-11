@@ -1,0 +1,178 @@
+# my-song
+# song2
+#https://www.youtube.com/watch?v=QebijAzShiw =seep effect
+#https://www.youtube.com/watch?v=pxsC1z_EYDg = rewind effect
+use_bpm 100
+use_synth :piano
+
+intro1 = "C:/Users/kaylah_jauregui/Desktop/Charlie Puth - BOY  AUDIO 1.mp3"
+outro2 = "C:/Users/kaylah_jauregui/Desktop/Charlie Puth - BOY AUDIO 2.mp3"
+sweep = "C:/Users/kaylah_jauregui/Desktop/DJ Sweep Effect - Transition 1.mp3"
+rewind = "C:/Users/kaylah_jauregui/Desktop/DJ - Rewind Sound Effect 1.mp3"
+
+a = 0.2
+
+notes = [:db4,:db5,:db5,:db5,:db5, :db5, :a4,:a4,:a4,:c5,:c5,:c5,:d5,:d5,:b4,:r,:d5,:d5]
+x = [0.5, 0.5, 0.5, 0.25, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.25, 0.75, 0.5, 0.25, 0.25]
+i = 0
+
+define :boy do |n1, n2, n3, s1|
+  play n1
+  play n2
+  play n3
+  sleep s1
+end
+
+define :boy2 do |b1, b2, b3, s1|
+  play b1,release: 2
+  play b2,release: 2
+  play b3,release: 2
+  sleep s1
+end
+
+sample rewind
+sleep 3
+sample sweep
+sleep 2
+# SONG 2 STARTS HERE------
+sample intro1
+sleep 110
+
+18.times do
+  play notes[i]
+  sleep x[i]
+  i = i + 1
+end
+
+
+boy :d4,:b3,:g3, 0.5
+play :d5
+sleep 0.25
+play :e4
+play :a4
+sleep 0.25
+boy :d5,:a4,:d4, 0.5
+play :d5
+sleep 0.25
+boy :d5,:b4,:f4, 0.5
+play :a4
+sleep 0.5
+play :a4
+sleep 0.5
+play :a4
+sleep 0.25
+#SECOND LAYER
+live_loop :drum do
+  9. times do
+    sample :drum_heavy_kick
+    sample :drum_snare_soft
+    sleep 1.5
+  end
+  stop
+end
+boy  :a4 , :f4, :d4, 0.25
+boy  :c5 , :f4, :d4, 0.5
+play :c5
+sleep 0.25
+play :a4
+play :e4
+sleep 0.5
+boy :c5,:a4,:e4, 0.5
+play :d5
+sleep 0.25
+play :a4
+play :f4
+sleep 0.25
+boy :d5,:a4,:f4, 0.25
+play :b4
+sleep 0.25
+play :b4
+sleep 0.25
+play :b4
+sleep 0.25
+play :d5
+sleep 0.25
+boy :e5,:b4,:g4, 0.25
+play :f5
+sleep 0.5
+play :d5
+sleep 0.25
+play :e5
+sleep 0.5
+play :e5
+sleep 0.5
+play :b4
+sleep 0.25
+play :d5
+sleep 0.25
+play :d5
+sleep 0.25
+play :r
+sleep 0.5
+play :b4
+sleep 0.25
+play :d5
+sleep 0.5
+play :e5
+sleep 0.5
+play :f5
+sleep 0.5
+play :d5
+sleep 0.5
+play :e5
+sleep 0.5
+play :e5
+sleep 0.5
+play :b4
+sleep 0.25
+play :d5
+sleep 0.5
+#3RD LAYER
+live_loop :boomsound do
+  5. times do
+    sample :bd_boom
+    sleep 1.5
+  end
+  stop
+end
+play :d5
+sleep 0.5
+play :r
+sleep 0.5
+play :f5
+sleep 0.5
+boy :f5,:b4,:g4, 0.5
+play :d5
+sleep 0.5
+boy :e4,:a4,:f4, 0.5
+boy :e4,:a4,:f4, 0.5
+play :b4
+sleep 0.25
+boy2 :d5,:a4,:e4, 0.25
+boy2 :d5,:a4,:e4, 0.25
+play :d5
+sleep 0.5
+play :e5
+sleep 0.5
+boy :f5,:d5,:a4, 0.25
+play :d5
+sleep 0.5
+boy2 :e5,:c5,:a4, 0.25
+play :b4
+sleep 0.5
+boy2 :d5,:b4,:a4, 0.25
+boy2 :d5,:b4,:a4, 0.25
+play :f5
+play :b4
+play :a4
+sleep 0.5
+#ENDING
+
+sample outro2
+sleep 10
+6.times do
+  sample :bass_hit_c, amp: a
+  sleep 1
+  a = a+0.5
+end
+sample rewind
